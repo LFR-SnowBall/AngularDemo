@@ -11,20 +11,21 @@ import { PersonasService } from './services/personas/personas.service';
 })
 export class AppComponent implements OnInit {
   title = 'demo';
-  //declaracion de atributos necesarios para el control del formulario 
+  //TODO:declaracion de atributos necesarios para el control del formulario
   personaForm = new FormGroup({});
   paises: any
   estados: any
+  personas:any
 
-  //constructor del formulario
+  //TODO:constructor del formulario
   constructor(
     public fb: FormBuilder,
     public estadosService: EstadosService,
     public paisesService: PaisesService,
     public personasServices: PersonasService
   ) { }
-  //se crea  el formulario el cual sera consumido dinamicamente 
-  //desde el html por las etiquetas de angular 
+  //TODO:se crea  el formulario el cual sera consumido dinamicamente
+  //desde el html por las etiquetas de angular
   ngOnInit(): void {
     this.buildForm();
     this.personaForm.get("pais")?.valueChanges.subscribe(value => {
@@ -36,6 +37,7 @@ export class AppComponent implements OnInit {
 
     })
   }
+  //TODO: se crea el formulario en este caso para personas a guardar
   private buildForm() {
     this.personaForm = this.fb.group({
       name: ['', Validators.required],
@@ -45,17 +47,24 @@ export class AppComponent implements OnInit {
       estado: ['', Validators.required],
     })
 
-    //se carga la variable paises mediante el metodo solicitado de la clase de servicios
+    //TODO:se carga la variable paises mediante el metodo solicitado de la clase de servicios
     this.paisesService.getAllPaises().subscribe(resp => {
       this.paises = resp;
       //console.log(resp);
     },
       error => { console.error(error) }
-    )
+    );
+
+    this.personasServices.getAllPersonas().subscribe(resp => {
+      this.personas = resp;
+    }, error => { console.error(error)})
   }
+  //TODO: se guarda el metodo dando como valor el form con el servicio de save
   guardar(): void {
     this.personasServices.savePersonas(this.personaForm.value).subscribe(resp => {
-    
+      this.personaForm.reset();
+      this.personas.push(resp);
+
     },
       error => { console.error(error) }
     )

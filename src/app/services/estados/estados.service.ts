@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class EstadosService {
-  private API_SERVSER = "http://localhost:8080/estado/";
+  private API_SERVSER = "http://localhost:8080/estados/";
 
   constructor(private httpClient:HttpClient) { }
 

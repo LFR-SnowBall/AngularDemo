@@ -1,40 +1,68 @@
 <div class="formulario">
-    <h2>Crear Persona</h2>
-    <form [formGroup]="personaForm" (ngSubmit)="guardar()">
-        <div class="form-group">
-            <label class="form-label">Nombre</label>
-            <input type="text" class="form-control" formControlName="name">
-        </div>
-        <div class="form-group">
-            <label class="form-label">Apellido</label>
-            <input type="text" class="form-control" formControlName="apellido">
-        </div>
-        <div class="form-group">
-            <label class="form-label">edad</label>
-            <input type="number" class="form-control" formControlName="edad">
-        </div>
-        <div class="form-group">
-            <label class="form-label">Pais</label>
-            <!-- se carga el select mediante una varibale cargada por el back-end en springboot  -->
-            <select name="pais" id="pais" formControlName="pais" required> 
-                <option value="" disabled selected>Selecciona un pais</option>
-                <option [ngValue]="item" *ngFor="let item of paises">{{item.name}}</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label class="form-label">Estado</label>
-            <!-- se carga el select mediante una varibale cargada por el back-end en springboot  -->
-            <select name="estado" id="estado" formControlName="estado" required>
-                <option value="" disabled selected>Selecciona un Estado</option>
-                <option [ngValue]="item" *ngFor="let item of estados">{{item.name}}</option>
-            </select>
-        </div>
+  <h2>Crear Persona</h2>
+  <form [formGroup]="personaForm" (ngSubmit)="guardar()">
+    <div class="form-group">
+      <label class="form-label">Nombre</label>
+      <input type="text" class="form-control" formControlName="name" />
+    </div>
+    <div class="form-group">
+      <label class="form-label">Apellido</label>
+      <input type="text" class="form-control" formControlName="apellido" />
+    </div>
+    <div class="form-group">
+      <label class="form-label">edad</label>
+      <input type="number" class="form-control" formControlName="edad" />
+    </div>
+    <div class="form-group">
+      <label class="form-label">Pais</label>
+      <!-- se carga el select mediante una varibale cargada por el back-end en springboot  -->
+      <select name="pais" id="pais" formControlName="pais" required>
+        <option value="" disabled selected>Selecciona un pais</option>
+        <option [ngValue]="item" *ngFor="let item of paises">
+          {{ item.name }}
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Estado</label>
+      <!-- se carga el select mediante una varibale cargada por el back-end en springboot  -->
+      <select name="estado" id="estado" formControlName="estado" required>
+        <option value="" disabled selected>Selecciona un Estado</option>
+        <option [ngValue]="item" *ngFor="let item of estados">
+          {{ item.name }}
+        </option>
+      </select>
+    </div>
 
-        <button type="submit" name="guardar" class="btn btn-primary form">Guardar</button>
-    </form>
+    <button type="submit" name="guardar" class="btn btn-primary form">
+      Guardar
+    </button>
+  </form>
 </div>
-
-
-
+<div class="formulario">
+  <h2>Personas</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Edad</th>
+        <th>Pais</th>
+        <th>Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor = "let item of personas">
+        <td>{{item.id}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.apellido}}</td>
+        <td>{{item.edad}}</td>
+        <td>{{item.pais.name}}</td>
+        <td>{{item.estado.name}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 <router-outlet></router-outlet>
