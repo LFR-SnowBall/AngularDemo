@@ -50,6 +50,7 @@
         <th>Edad</th>
         <th>Pais</th>
         <th>Estado</th>
+        <th>Opciones</th>
       </tr>
     </thead>
     <tbody>
@@ -60,6 +61,7 @@
         <td>{{item.edad}}</td>
         <td>{{item.pais.name}}</td>
         <td>{{item.estado.name}}</td>
+        <td><button class="btn btn-danger" type="button" name="borrar" (click)="borrar(item)">Borrar Persona</button></td>
       </tr>
     </tbody>
   </table>

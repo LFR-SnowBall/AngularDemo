@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { observable, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -18,5 +18,9 @@ export class PersonasService {
 //TODO: le manda el formulario traido de components para guardar al usuario en el rest
   public savePersonas(persona:any):Observable<any>{
     return this.httpClient.post(this.API_SERVER,persona);
+  }
+
+  public  deletePersonas(idpersona:any):Observable<any>{
+    return this.httpClient.delete(this.API_SERVER+idpersona);
   }
 }
